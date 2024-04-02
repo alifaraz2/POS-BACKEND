@@ -7,7 +7,7 @@ const authController = {
     const payload = req.body
     const user = await userModel.findOne({
       where: {
-        Email: payload.Email,
+        email: payload.email,
       },
     })
     if (!user) {
@@ -15,8 +15,8 @@ const authController = {
         message: "invalid credentional",
       })
     }
-    const hpassword = user.Password
-    const password = payload.Password
+    const hpassword = user.password
+    const password = payload.password
     const result = await bcrypt.compare(password, hpassword)
     console.log(result, "this is a result")
 
@@ -28,7 +28,7 @@ const authController = {
 
     const data = {
       id: user.id,
-      Email: user.Email,
+      email: user.email,
       name: user.firstName + " " + user.lastName,
     }
 
@@ -47,41 +47,17 @@ const authController = {
       token,
     })
   },
-  adminRegister: async (req, res) => {
-    try {
-      const payload = req.body
-      
-      const password = await bcrypt.hash(payload.Password, 10) // Hash the password with salt rounds
-      const user = await userModel.create({
-        firstName: payload.firstName,
-        lastName: payload.lastName,
-        Email: payload.Email,
-        Password: password, // Store the hashed password
-        isAdmin: true
-      })
-      res.json({
-        message: "Admin  registered successfully",
-        user,
-      })
-    } catch (error) {
-      res.status(500).json({ error: "Failed to register admin" })
-    }
-  },
+
   register: async (req, res) => {
     try {
       const payload = req.body
-      if (!req.user.isAdmin) {
-        return res
-          .status(403)
-          .json({ error: "Only admins can register new users" })
-      }
-      const password = await bcrypt.hash(payload.Password, 10) // Hash the password with salt rounds
+      const password = await bcrypt.hash(payload.password, 10)
       const user = await userModel.create({
         firstName: payload.firstName,
         lastName: payload.lastName,
-        Email: payload.Email,
-        Password: password, // Store the hashed password
-        isAdmin:  false
+        email: payload.email,
+        password: password,
+        isAdmin:payload.isAdmin || false
       })
       res.json({
         message: "User registered successfully",

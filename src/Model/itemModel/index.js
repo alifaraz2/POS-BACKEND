@@ -1,7 +1,6 @@
 import sequelize from "../../DB/config.js"
 import { DataTypes } from "sequelize"
 
-
 const itemModel = sequelize.define(
   "Items",
   {
@@ -9,15 +8,12 @@ const itemModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Model: {
-      type: DataTypes.STRING,
-    },
     Detail: {
       type: DataTypes.STRING,
     },
     UnitPrice: {
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull: false,
     },
     Quantity: {
       type: DataTypes.STRING,

@@ -1,3 +1,4 @@
+import TransactionModel from "../Model/TransactionModel/index.js";
 import itemModel from "../Model/itemModel/index.js";
 import userModel from "../Model/userModel/index.js";
 
@@ -9,6 +10,11 @@ const initDb=async()=>{
 
     })
     await userModel.sync({
+        alter:true,
+        force:false
+
+    })
+    await TransactionModel.sync({
         alter:true,
         force:false
 

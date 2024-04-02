@@ -1,7 +1,7 @@
 import sequelize from "../../DB/config.js"
 import { DataTypes } from "sequelize"
 
-const Transaction = sequelize.define(
+const TransactionModel = sequelize.define(
   "Transaction",
   {
     transactionId: {
@@ -13,10 +13,6 @@ const Transaction = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     unitPrice: {
       type: DataTypes.FLOAT,
       allowNull: false,
@@ -25,4 +21,4 @@ const Transaction = sequelize.define(
   {}
 )
 
-export default Transaction
+export default TransactionModel

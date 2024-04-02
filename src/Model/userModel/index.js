@@ -8,22 +8,21 @@ const userModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName:{
+    lastName: {
       type: DataTypes.STRING,
     },
-    Email: {
+    email: {
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull: false,
       unique: true,
     },
-    Password: {
+    password: {
       type: DataTypes.STRING,
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-    }
-
+    },
   },
   {}
 )

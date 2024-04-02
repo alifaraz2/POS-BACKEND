@@ -30,10 +30,10 @@ const itemController = {
       const payload = req.body
       const schema = Joi.object({
         Name: Joi.string().min(4).max(15).required(),
-        Model: Joi.string().min(3).max(90),
         Detail: Joi.string(),
         UnitPrice: Joi.string().required(),
         Quantity: Joi.string(),
+        Barcode: Joi.string(),
       })
 
       const isValidate = schema.validate(payload)
@@ -42,10 +42,8 @@ const itemController = {
           .status(400)
           .json({ message: "Invalid data", error: isValidate.error })
       }
-
       const newItem = await itemModel.create({
         Name: payload.Name,
-        Model: payload.Model,
         Detail: payload.Detail,
         UnitPrice: payload.UnitPrice,
         Quantity: payload.Quantity,
