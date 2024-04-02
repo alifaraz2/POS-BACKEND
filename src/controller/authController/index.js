@@ -30,6 +30,7 @@ const authController = {
       id: user.id,
       email: user.email,
       name: user.firstName + " " + user.lastName,
+      isAdmin: user.isAdmin,
     }
 
     const token = Jwt.sign(
@@ -51,13 +52,14 @@ const authController = {
   register: async (req, res) => {
     try {
       const payload = req.body
+
       const password = await bcrypt.hash(payload.password, 10)
       const user = await userModel.create({
         firstName: payload.firstName,
         lastName: payload.lastName,
         email: payload.email,
         password: password,
-        isAdmin:payload.isAdmin || false
+        isAdmin: payload.isAdmin || false,
       })
       res.json({
         message: "User registered successfully",
