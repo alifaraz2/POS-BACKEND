@@ -3,4 +3,5 @@ import transactionController from "../../controller/TransactionController/index.
 
 const transactionRoutes=Router()
 transactionRoutes.get('/getTransaction',transactionController.getTransaction)
+transactionRoutes.post('/addTransaction',transactionController.addTransaction)
 export default transactionRoutes;

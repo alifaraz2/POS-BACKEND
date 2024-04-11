@@ -4,11 +4,6 @@ import { DataTypes } from "sequelize"
 const TransactionModel = sequelize.define(
   "Transaction",
   {
-    transactionId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     itemName: {
       type: DataTypes.STRING,
       allowNull: false,

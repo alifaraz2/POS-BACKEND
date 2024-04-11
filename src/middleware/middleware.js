@@ -13,7 +13,7 @@ const AuthMiddleware = async (req, res, next) => {
 
   try {
     let decoded = jwt.verify(token, "secret")
-      
+
     req.user = decoded
     console.log(req.user, "this is a anthouris")
   } catch (err) {
